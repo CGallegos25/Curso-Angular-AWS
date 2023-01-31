@@ -1,8 +1,8 @@
 version: '0.2'
 phases:
   install:
-    runtime-version:
-      nodejs: 12
+    runtime-versions:
+      nodejs: 14
     pre_build:
       commands:
         - echo 'Prebuilding, installing npm dependencies'
@@ -10,7 +10,7 @@ phases:
     buil:
       commands:
         - echo 'Starting the buil step'
-        - npm run build
+        - npm run build:prod
 artifacts:
   name: 'BuildOutput'
   files:
