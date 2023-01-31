@@ -1,0 +1,18 @@
+version: '0.2'
+phases:
+  install:
+    runtime-version:
+      nodejs: 12
+    pre_build:
+      commands:
+        - echo 'Prebuilding, installing npm dependencies'
+        - npm install
+    buil:
+      commands:
+        - echo 'Starting the buil step'
+        - npm run build
+artifacts:
+  name: 'BuildOutput'
+  files:
+    - '**/*'
+  base-directory: 'dist/ambulance'

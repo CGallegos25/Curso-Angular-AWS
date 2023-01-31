@@ -1,0 +1,20 @@
+<form fxLayout="column" [formGroup]="formGroupTS">
+  <h2>Credenciales</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input type="text" placeholder="Ingrese su Correo" matInput formControlName="correo">
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input [type]="hide ? 'password' : 'text'" placeholder="Ingrese su Password" matInput formControlName="password">
+    <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+      <mat-icon>{{hide ? 'lock' : 'lock_open'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <div fxLayout fxLayoutAlign="center">
+    <button type="button" mat-flat-button color="primary" (click)="submitLogin()" [disabled]="formGroupTS.invalid">
+      Ingresar
+    </button>
+  </div>
+</form>

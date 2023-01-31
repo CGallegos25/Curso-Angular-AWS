@@ -1,0 +1,15 @@
+<mat-sidenav-container autosize="true">
+  <mat-sidenav opened="true" mode="side" *ngIf="!config.layout.menu.hidden">
+    <div class="logo" fxLayout fxLayoutGap="20px" fxLayoutAlign="start center">
+      <!-- Manera general para agregar iconos definos por angular material mat-icon>face</mat-icon -->
+      <!-- Manera en como agregar iconos de manera manual atraves de svg-->
+      <mat-icon svgIcon="logo"></mat-icon>
+      <h3 *ngIf="expanded">Sistema de historias</h3>
+    </div>
+    <amb-menu (onExpand)="showExpand($event)"></amb-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <amb-header *ngIf="!config.layout.header.hidden"></amb-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

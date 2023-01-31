@@ -1,0 +1,15 @@
+:host {
+  width: 80%;
+}
+
+form{
+  padding: 8px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.recaptcha {
+  padding: 10px 0;
+}

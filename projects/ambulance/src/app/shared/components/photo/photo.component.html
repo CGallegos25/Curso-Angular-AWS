@@ -1,0 +1,8 @@
+<div class="container"
+     ambUpload
+     (onHover)="changeHover($event)"
+     (onUpload)="fileUpload($event)"
+     [ngClass]="{hover: statusHover}"
+     #photo
+></div>
+<p>Arrastre una imagen al rectangulo superior</p>

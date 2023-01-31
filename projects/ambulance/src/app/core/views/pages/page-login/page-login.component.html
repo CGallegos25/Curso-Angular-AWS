@@ -1,0 +1,10 @@
+<div fxLayout fxLayout.lt-sm="column" fxLayoutAlign="space-between" class="container">
+  <div class="info" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="40px" fxFlex="1 1 65%">
+    <mat-icon svgIcon="logo">
+    </mat-icon>
+    <h2>Sistema de ambulancia</h2>
+  </div>
+  <div class="login" fxFlex="1 1 35%" fxFlex.lt-sm="1 1 100%" fxLayoutAlign="center center">
+    <ambc-login (onLogin)="login($event)"></ambc-login>
+  </div>
+</div>
