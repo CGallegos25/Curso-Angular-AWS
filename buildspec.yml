@@ -15,4 +15,4 @@ artifacts:
   name: 'BuildOutput'
   files:
     - '**/*'
-  base-directory: 'aplicacion/dist/ambulance'
+  base-directory: 'dist/ambulance'
