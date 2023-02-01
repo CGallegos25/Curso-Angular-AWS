@@ -26,7 +26,6 @@ import { UtilService } from './services/util.service';
 import { DescargarComponent } from './components/descargar/descargar.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { UploadDirective } from './directives/upload.directive';
-import { SharedPropertiesDirective } from './directives/shared-properties.directive';
 import { PropertiesComponent } from './components/properties/properties.component';
 
 @NgModule({
@@ -40,7 +39,6 @@ import { PropertiesComponent } from './components/properties/properties.componen
     DescargarComponent,
     PhotoComponent,
     UploadDirective,
-    SharedPropertiesDirective,
     PropertiesComponent
   ],
   imports: [
