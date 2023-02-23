@@ -96,22 +96,22 @@ export class ListMedicsComponent implements OnInit {
       }
 
       if (response.id) {
-        const medic = { ...response };
+        const medic = response.medic;
         delete medic.id;
         this.medicUsecase
           .update(response.id, medic)
           .pipe(takeUntil(this.obsFinish))
           .subscribe((data: Medic) => {
             this.loadDataByPage(this.pageCurrent);
+            this.utilService.notifier('Registro actualizado');
           });
       } else {
-        const medic = { ...response };
-        delete medic.id;
         this.medicUsecase
-          .insert(medic)
+          .insert(response.medic)
           .pipe(takeUntil(this.obsFinish))
           .subscribe((data: Medic) => {
             this.loadDataByPage(this.pageCurrent);
+            this.utilService.notifier('Registro insertado');
           });
       }
     });

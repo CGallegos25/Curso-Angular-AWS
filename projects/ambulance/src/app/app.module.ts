@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { LoginModule } from '../../../login/src/lib/login.module';
@@ -18,6 +19,7 @@ import { Paginator } from './shared/class/paginator';
 import { ConfigModule } from './config/modules/config.module';
 import { AMB_CONFIG } from './config/constants/config.constant';
 import { TokenInterceptor } from './shared/interceptor/token-interceptor';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,12 @@ import { TokenInterceptor } from './shared/interceptor/token-interceptor';
     MatSidenavModule,
     MatIconModule,
     NgScrollbarModule,
-    ConfigModule.forRoot(AMB_CONFIG)
+    ConfigModule.forRoot(AMB_CONFIG),
+    SharedModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: Paginator },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

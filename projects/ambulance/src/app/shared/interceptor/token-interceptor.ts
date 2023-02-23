@@ -14,12 +14,14 @@ export class TokenInterceptor implements HttpInterceptor {
 
     if (req.url.includes('/users/login')) {
       return next.handle(req);
+    } else if (req.url.includes('https://api.datos.gob.mx/v1/condiciones-atmosfericas') || req.url.includes('https://p7inv.sse.codesandbox.io/')) {
+      return next.handle(req);
     }
 
     const authUseCase = this.injector.get(AuthUseCase);
     const accesToken = authUseCase.getStorage('accessToken');
     const requestCloned = req.clone({
-      headers: req.headers.append('Authorization', `Bearer ${accesToken}`)
+      headers: req.headers.append('Authorization', `Bearer ${accesToken}`),
     });
 
     return next.handle(requestCloned).pipe(

@@ -43,7 +43,7 @@ export class MedicService extends MedicRepository {
       );
   }
 
-  update(id: number, medic: Medic): Observable<Medic> {
+  update(id: number, medic: FormData): Observable<Medic> {
     return this.http
       .put<Medic>(`${environment.pathAPI}/medics/${id}`, medic)
       .pipe(
@@ -61,7 +61,7 @@ export class MedicService extends MedicRepository {
     );
   }
 
-  insert(driver: Medic): Observable<Medic> {
+  insert(driver: FormData): Observable<Medic> {
     return this.http
       .post<Medic>(`${environment.pathAPI}/medics`, driver)
       .pipe(

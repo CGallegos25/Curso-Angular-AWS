@@ -12,7 +12,7 @@
           formControlName="foto"
           [photoByDefault]="photoToShow"
         ></amb-photo-->
-        <amb-photo></amb-photo>
+        <amb-photo formControlName="foto" [photoByDefault]="photoToShow"></amb-photo>
       </div>
       <div fxLayout="column" fxFlex="1 1 33%">
         <mat-form-field appearance="outline">
@@ -52,9 +52,6 @@
           <input type="text" matInput required formControlName="correo" />
           <mat-error>Este campo es obligatorio</mat-error>
         </mat-form-field>
-      </div>
-      <div>
-        <amb-properties></amb-properties>
       </div>
     </div>
     <div fxLayout fxLayoutAlign="end center" fxLayoutGap="20px">

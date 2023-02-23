@@ -7,13 +7,15 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from '../components/confirm/confirm.component';
 import { DescargarComponent } from '../components/descargar/descargar.component';
 import { OptionsExport } from '../interfaces/options-export';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-@Injectable()
+@Injectable({ providedIn: 'any'})
 export class UtilService {
 
   constructor(
     private readonly dialog: MatDialog,
-    private readonly bottomSheet: MatBottomSheet
+    private readonly bottomSheet: MatBottomSheet,
+    private readonly snackBar: MatSnackBar,
   ) { }
 
   confirm(message: string = ''): Observable<string> {
@@ -36,5 +38,9 @@ export class UtilService {
   openSheet(content: any = null, title: string, fileName: string) {
     const options: OptionsExport = { content, title, fileName };
     this.bottomSheet.open(DescargarComponent, { data: options });
+  }
+
+  notifier(message: string) {
+    this.snackBar.open(message, '', {duration: 3000});
   }
 }

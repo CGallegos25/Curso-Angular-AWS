@@ -44,11 +44,15 @@ export class AuthUseCase {
     return !! this.storageRepository.getStorage('accessToken');
   }
 
-  getFieldInToken(fieldName: string): string | null {
+  getFieldInToken(fieldName: string): any {
     return this.storageRepository.getFieldInToken(fieldName);
   }
 
   getNewAccesToken(refreshToken: string): Observable<Token> {
     return this.authRepository.getNewAccesToken(refreshToken);
+  }
+
+  getRolesUser(): string[] {
+    return this.authRepository.getRolesUser();
   }
 }

@@ -3,6 +3,6 @@ export abstract class StorageRepository {
   abstract setStorage(nameProperty: string, value: string): void;
   abstract clearStorage(): void;
   abstract logout(): void;
-  abstract getFieldInToken(fieldName: string): string | null;
+  abstract getFieldInToken(fieldName: string): any;
 
 }

@@ -16,7 +16,7 @@ export class MedicUsecase {
     return this.medicRepository.getPage(page);
   }
 
-  update(id: number, medic: Medic): Observable<Medic> {
+  update(id: number, medic: FormData): Observable<Medic> {
     return this.medicRepository.update(id, medic);
   }
 
@@ -24,7 +24,7 @@ export class MedicUsecase {
     return this.medicRepository.delete(id);
   }
 
-  insert(medic: Medic): Observable<Medic> {
+  insert(medic: FormData): Observable<Medic> {
     return this.medicRepository.insert(medic);
   }
 }

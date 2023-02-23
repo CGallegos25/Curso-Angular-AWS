@@ -53,11 +53,13 @@ export class FormMedicComponent implements OnInit {
 
     delete record.id;
 
+    // Esto se usa para enviar al backend un archivo binario
     const formData = new FormData();
     for (const key of Object.keys(record)) {
       const value = record[key];
       formData.append(key, value);
     }
+
     this.reference.close({ id, medic: formData });
   }
 }

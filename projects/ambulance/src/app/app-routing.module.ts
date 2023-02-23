@@ -23,19 +23,19 @@ const routes: Routes = [
     path: 'histories',
     canLoad: [AuthenticationGuardService],
     loadChildren: () =>
-      import('./histories/histories.module').then((m) => m.HistoriesModule),
+      import('./histories/histories.module').then((m) => m.HistoriesModule)
   },
   {
     path: 'medics',
     canLoad: [AuthenticationGuardService],
     loadChildren: () =>
-      import('./medics/medics.module').then((m) => m.MedicsModule),
+      import('./medics/medics.module').then((m) => m.MedicsModule)
   },
   {
     path: 'users',
     canLoad: [AuthenticationGuardService],
     loadChildren: () =>
-      import('./users/users.module').then((u) => u.UsersModule),
+      import('./users/users.module').then((u) => u.UsersModule)
   },
 ];
 

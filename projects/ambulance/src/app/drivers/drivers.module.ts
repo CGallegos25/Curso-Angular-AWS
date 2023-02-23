@@ -20,7 +20,6 @@ import { DriverRepository } from './aplication/driver-repository';
 import { DriversService } from './infraestructure/drivers.service';
 import { DriverUsecase } from './aplication/driver-usecase';
 
-
 @NgModule({
   declarations: [
     ListDriversComponent,

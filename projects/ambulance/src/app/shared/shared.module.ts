@@ -11,10 +11,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
+
+import { WebcamModule } from 'ngx-webcam';
 
 import { TitleComponent } from './components/title/title.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -22,11 +26,10 @@ import { TableComponent } from './components/table/table.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { KeypadComponent } from './components/keypad/keypad.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
-import { UtilService } from './services/util.service';
 import { DescargarComponent } from './components/descargar/descargar.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { UploadDirective } from './directives/upload.directive';
-import { PropertiesComponent } from './components/properties/properties.component';
+import { RolesAllowedDirective } from './directives/roles-allowed.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,7 @@ import { PropertiesComponent } from './components/properties/properties.componen
     DescargarComponent,
     PhotoComponent,
     UploadDirective,
-    PropertiesComponent
+    RolesAllowedDirective,
   ],
   imports: [
     CommonModule,
@@ -53,12 +56,25 @@ import { PropertiesComponent } from './components/properties/properties.componen
     MatDialogModule,
     MatBottomSheetModule,
     MatListModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
     FlexLayoutModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    WebcamModule,
   ],
-  exports: [TitleComponent, ContainerComponent, TableComponent, NgScrollbarModule, PaginatorComponent, KeypadComponent, MatDialogModule, ConfirmComponent, DescargarComponent, PhotoComponent, PropertiesComponent],
-  providers: [
-    UtilService
-  ]
+  exports: [
+    TitleComponent,
+    ContainerComponent,
+    TableComponent,
+    NgScrollbarModule,
+    PaginatorComponent,
+    KeypadComponent,
+    MatDialogModule,
+    ConfirmComponent,
+    DescargarComponent,
+    PhotoComponent,
+    MatSnackBarModule,
+    RolesAllowedDirective
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
