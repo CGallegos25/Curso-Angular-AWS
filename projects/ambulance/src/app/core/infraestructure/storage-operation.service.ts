@@ -21,12 +21,12 @@ export class StorageOperationService {
   }
 
   getFieldInToken(fieldName: string): any {
-    const accessToken = this.getStorage('accessToken');
+    const accessToken = this.getStorage('x-token');
     if (!accessToken) return '';
 
     try {
-      const payload: any = jwt_decode(accessToken);
-      return payload[fieldName];
+      const { usuario }: any = jwt_decode(accessToken);
+      return usuario[fieldName];
     } catch (error) {
       return '';
     }

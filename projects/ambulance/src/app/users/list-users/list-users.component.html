@@ -1,9 +1,12 @@
 <amb-title></amb-title>
-<amb-container>
+<amb-container *ngIf="fieldSet">
   <ng-scrollbar #scrollable
   track="all"
   pointerEventsMethod="scrollbar"
   class="heigtMaxScrollbar">
+  <div *ngIf="isLoading| async">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
     <amb-table [data]="data" [metadataColumns]="metadataColumns">
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>

@@ -66,3 +66,11 @@ import 'zone.js';  // Included with Angular CLI.
 
 
 (window as any).global = window;
+
+export {};
+
+declare global {
+  interface Window {
+    handleCredentialResponse: (response: any) => void;
+  }
+}

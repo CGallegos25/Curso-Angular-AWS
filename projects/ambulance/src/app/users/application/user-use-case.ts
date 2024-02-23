@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { User } from '../domain/user';
 import { UserModel } from '../models/user';
-import { ResultPage } from './result-page';
+import { ResultPage, ResultPageNode } from './result-page';
 import { UserRepository } from './user-repository';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class UserUseCase {
     return this.userRepository.listUserMap();
   }
 
-  getPage(page: number): Observable<ResultPage> {
+  getPage(page: number): Observable<ResultPageNode> {
     return this.userRepository.getPage(page);
   }
 

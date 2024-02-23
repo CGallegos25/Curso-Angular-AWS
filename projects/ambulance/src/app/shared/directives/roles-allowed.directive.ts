@@ -22,13 +22,16 @@ export class RolesAllowedDirective {
   ) { }
 
   ngOnInit(): void {
+    console.log('Llega a la directiva y hace uso de la clase AuthUseCase  ');
     this.execute();
   }
 
   execute() {
+    console.log('Llega a la directiva y hace uso de la clase AuthUseCase  ');
     const isUserLogged = this.authUseCase.getStatusUser();
     const rolesUser = this.authUseCase.getRolesUser();
     const lenghtRolesAllowed = this.rolesAllowed.length;
+    console.log(this.rolesAllowed);
 
     let userAuthorized = false;
 

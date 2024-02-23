@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, QueryList, ContentChildren, SimpleChanges } from '@angular/core';
 import { MatColumnDef, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MetaDataColumns } from '../../interfaces/meta-data-columns';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'amb-table',
@@ -16,17 +17,23 @@ export class TableComponent implements OnInit {
 
   dataSource: any;
   listFields: string[] = [];
+  isLoading = this.spinnerService.isLoading;
 
-
-  constructor() { }
+  constructor(
+    private spinnerService: SpinnerService
+  ) { }
 
   ngOnChanges() {
-    this.loadData();
+    if (this.isLoading) {
+      this.loadData();
+    }
   }
 
   ngOnInit(): void {
     this.listFields = this.metadataColumns.map( el => el.field);
-    this.loadData();
+    if (this.isLoading) {
+      this.loadData();
+    }
   }
 
   loadData() {

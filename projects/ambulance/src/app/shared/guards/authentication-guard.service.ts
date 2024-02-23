@@ -16,6 +16,7 @@ export class AuthenticationGuardService implements CanLoad {
 
   canLoad(): boolean {
     const status = this.authUseCase.getStatusUser();
+    console.log(status);
 
     if (!status) {
       this.router.navigate(['/']);

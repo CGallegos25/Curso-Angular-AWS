@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginModule } from '../../../login/src/lib/login.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
+import { CommonModule } from '@angular/common';
 import { IconService } from './shared/services/icon.service';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -28,6 +29,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     CoreModule,
+    CommonModule,
     HttpClientModule,
     LoginModule,
     AppRoutingModule,

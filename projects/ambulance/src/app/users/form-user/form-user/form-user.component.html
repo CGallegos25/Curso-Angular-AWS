@@ -21,13 +21,17 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Roles</mat-label>
+      <!-- <input type="text" matInput formControlName="roles" /> -->
       <mat-select multiple formControlName="roles" required>
-        <mat-option *ngFor="let role of roles" [value]="role.id">
+        <mat-option *ngFor="let role of roles" [value]="role.name">
           {{ role.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <div fxLayout fxLayoutAlign="end" fxLayoutGap="10px">
+      <button mat-button mat-dialog-close color="primary" type="button">
+        Cancelar
+      </button>
       <button
         mat-raised-button
         color="primary"
@@ -36,9 +40,6 @@
         (click)="save()"
       >
         Guardar
-      </button>
-      <button mat-button mat-dialog-close color="primary" type="button">
-        Cancelar
       </button>
     </div>
   </form>

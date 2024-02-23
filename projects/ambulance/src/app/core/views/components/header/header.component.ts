@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authUseCase: AuthUseCase
   ) {
-    this.userName = this.authUseCase.getFieldInToken('name');
+    this.userName = this.authUseCase.getFieldInToken('nombre');
    }
 
   ngOnInit(): void {

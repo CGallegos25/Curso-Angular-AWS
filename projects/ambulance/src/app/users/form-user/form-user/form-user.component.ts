@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { User } from '../../domain/user';
+import { User, UserNode } from '../../domain/user';
 
 @Component({
   selector: 'amb-form-user',
@@ -13,14 +13,13 @@ export class FormUserComponent implements OnInit {
   title!: string;
   group!: FormGroup;
   roles = [
-    { id: 1, name: 'ADMIN' },
-    { id: 2, name: 'OPERATOR' },
-    { id: 3, name: 'MEDIC' },
+    { name: 'ADMIN_ROLE' },
+    { name: 'USER_ROLE' }
   ];
 
   constructor(
     private readonly reference: MatDialogRef<FormUserComponent>,
-    @Inject(MAT_DIALOG_DATA) private data?: User
+    @Inject(MAT_DIALOG_DATA) private data?: UserNode
   ) {
     this.title = data ? 'EDICIÓN' : 'NUEVO';
   }
@@ -31,16 +30,18 @@ export class FormUserComponent implements OnInit {
   }
 
   loadForm() {
+    console.log(this.data);
     this.group = new FormGroup({
-      id: new FormControl(this.data?.id),
+      id: new FormControl(this.data?.uid),
       nombre: new FormControl(this.data?.nombre, Validators.required),
       correo: new FormControl(this.data?.correo, [
         Validators.required,
         Validators.email,
       ]),
-      roles: new FormControl(this.data?.roles.map((r: any) => r.id)),
+      roles: new FormControl([this.data?.rol]),
     });
-
+    console.log(this.data?.rol);
+    console.log(this.group.value);
     if (this.data) {
       this.group.addControl('password', new FormControl(''));
     } else {

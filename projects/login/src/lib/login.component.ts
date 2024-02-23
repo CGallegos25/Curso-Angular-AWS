@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   authI !: Auth ;
   hide = true;
   formGroupTS: FormGroup;
+  isLoggedin?: boolean;
 
   constructor() {
     this.formGroupTS  = new FormGroup({
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+
   }
 
   setValueUser(): Auth {
@@ -44,4 +47,7 @@ export class LoginComponent implements OnInit {
     this.onLogin.emit(objUser);
   }
 
+  handleCredentialResponse(response: any) {
+    console.log(response);
+  }
 }

@@ -9,7 +9,7 @@ const routes: Routes = [
     path:'',
     component: ListHistoriesComponent,
     data: {
-      rolesAllowed: ['ADMIN']
+      rolesAllowed: ['ADMIN_ROLE']
     },
     canActivate: [AuthorizationGuard]
   }

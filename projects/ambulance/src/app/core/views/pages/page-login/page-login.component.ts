@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 
 import { ConfigService } from 'projects/ambulance/src/app/config/services/config.service';
 
-import { Auth } from '../../../domain/auth';
-import { Token } from '../../../domain/token';
+import { Auth, AuthNode } from '../../../domain/auth';
+import { Token, TokenNode } from '../../../domain/token';
 import { AuthUseCase } from '../../../application/auth.usecase';
 
 @Component({
@@ -52,9 +52,21 @@ export class PageLoginComponent implements OnInit {
   }
 
   login(auth: Auth) {
-    this.subscription = this.authUseCase.login(auth).subscribe((response: Token) => {
-      this.authUseCase.setStorage('accessToken', response.accessToken);
-      this.authUseCase.setStorage('refreshToken', response.refreshToken);
+    // this.subscription = this.authUseCase.login(auth).subscribe((response: Token) => {
+    //   console.log(response);
+    //   this.authUseCase.setStorage('accessToken', response.accessToken);
+    //   this.authUseCase.setStorage('refreshToken', response.refreshToken);
+    //   this.router.navigate(['/dashboard']);
+    // });
+
+    const authNode: AuthNode = {
+      correo: auth.correo,
+      password: auth.password
+    }
+    this.subscription = this.authUseCase.loginNode(authNode).subscribe((response: TokenNode) => {
+      console.log(response);
+      this.authUseCase.setStorage('x-token', response.token);
+      // this.authUseCase.setStorage('refreshToken', response.refreshToken);
       this.router.navigate(['/dashboard']);
     });
   }

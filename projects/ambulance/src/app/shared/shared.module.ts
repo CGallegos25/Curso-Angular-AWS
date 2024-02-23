@@ -30,6 +30,8 @@ import { DescargarComponent } from './components/descargar/descargar.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { UploadDirective } from './directives/upload.directive';
 import { RolesAllowedDirective } from './directives/roles-allowed.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { RolesAllowedDirective } from './directives/roles-allowed.directive';
     FlexLayoutModule,
     NgScrollbarModule,
     WebcamModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     TitleComponent,

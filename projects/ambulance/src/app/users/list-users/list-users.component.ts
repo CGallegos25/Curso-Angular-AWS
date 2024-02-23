@@ -4,14 +4,15 @@ import { takeUntil } from 'rxjs/operators';
 
 import { environment } from 'projects/ambulance/src/environments/environment';
 import { MetaDataColumns } from '../../shared/interfaces/meta-data-columns';
-import { User } from '../domain/user';
+import { User, UserNode } from '../domain/user';
 import { UserUseCase } from '../application/user-use-case';
-import { ResultPage } from '../application/result-page';
+import { ResultPage, ResultPageNode } from '../application/result-page';
 import { KeyButton } from '../../shared/interfaces/key-button';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormUserComponent } from '../form-user/form-user/form-user.component';
 import { UtilService } from '../../shared/services/util.service';
 import { UserModel } from '../models/user';
+import { SpinnerService } from '../../shared/services/spinner.service';
 
 
 
@@ -22,7 +23,7 @@ import { UserModel } from '../models/user';
 })
 export class ListUsersComponent implements OnInit {
 
-  data: User[] = [];
+  data: UserNode[] = [];
   pageCurrent = 0;
   totalRecords = 0;
   pageSize = environment.pageSize;
@@ -30,10 +31,10 @@ export class ListUsersComponent implements OnInit {
   obsFinish = new Subject<any>();
 
   metadataColumns: MetaDataColumns[] = [
-    { field: 'id', title: "ID" },
+    { field: 'uid', title: "UID" },
     { field: 'nombre', title:'Nombre Completo'},
     { field: 'correo', title: 'Correo' },
-    { field: 'activo', title: 'Activo' },
+    { field: 'estado', title: 'Activo' },
   ];
 
   keypadButtons: KeyButton[] = [
@@ -46,10 +47,15 @@ export class ListUsersComponent implements OnInit {
     },
   ];
 
+  isLoading: Subject<boolean> = this.spinnerService.isLoading;
+
+  public fieldSet = false;
+
   constructor(
     private readonly dialog: MatDialog,
     private readonly userUseCase: UserUseCase,
-    private readonly utilsService: UtilService
+    private readonly utilsService: UtilService,
+    private spinnerService: SpinnerService
   ) {
     this.loadDataByPage(0);
   }
@@ -78,7 +84,7 @@ export class ListUsersComponent implements OnInit {
     }
   }
 
-  openForm(data?: User) {
+  openForm(data?: UserNode) {
     const reference: MatDialogRef<FormUserComponent> =
       this.utilsService.openModal(FormUserComponent, {
         disableClose: true,
@@ -100,7 +106,7 @@ export class ListUsersComponent implements OnInit {
         this.userUseCase
           .update(response.id, user)
           .pipe(takeUntil(this.obsFinish))
-          .subscribe((data: User) =>
+          .subscribe(() =>
             this.loadDataByPage(this.pageCurrent)
           );
       } else {
@@ -109,30 +115,30 @@ export class ListUsersComponent implements OnInit {
         this.userUseCase
           .insert(user)
           .pipe(takeUntil(this.obsFinish))
-          .subscribe((data: User) =>
+          .subscribe(() =>
             this.loadDataByPage(this.pageCurrent)
           );
       }
     });
   }
 
-  delete(row: User) {
-    const obsResponse: Observable<string> = this.utilsService.confirm(
-      '¿Está seguro de querer eliminar?'
-    );
+  delete(row: UserNode) {
+    // const obsResponse: Observable<string> = this.utilsService.confirm(
+    //   '¿Está seguro de querer eliminar?'
+    // );
 
-    obsResponse.subscribe((response) => {
-      if (!response) {
-        return;
-      }
+    // obsResponse.subscribe((response) => {
+    //   if (!response) {
+    //     return;
+    //   }
 
-      this.userUseCase
-        .delete(row.id)
-        .pipe(takeUntil(this.obsFinish))
-        .subscribe((data: User) => {
-          this.loadDataByPage(0);
-        });
-    });
+    //   this.userUseCase
+    //     .delete(row.id)
+    //     .pipe(takeUntil(this.obsFinish))
+    //     .subscribe((data: User) => {
+    //       this.loadDataByPage(0);
+    //     });
+    // });
   }
 
   download() {
@@ -153,9 +159,10 @@ export class ListUsersComponent implements OnInit {
     this.userUseCase
       .getPage(page)
       .pipe(takeUntil(this.obsFinish))
-      .subscribe((data: ResultPage) => {
-        this.data = data.records as User[];
-        this.totalRecords = data.totalRecords;
+      .subscribe((data: ResultPageNode) => {
+        this.fieldSet = true;
+        this.data = data.usuarios as UserNode[];
+        this.totalRecords = data.total;
       });
   }
 

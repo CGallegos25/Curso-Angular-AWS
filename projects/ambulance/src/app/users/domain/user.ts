@@ -19,3 +19,12 @@ export enum Rol {
   Medic = "MEDIC",
   Operator = "OPERATOR",
 }
+
+export interface UserNode {
+  nombre: string,
+  correo: string,
+  rol: string,
+  estado: boolean,
+  google: boolean,
+  uid: string
+}

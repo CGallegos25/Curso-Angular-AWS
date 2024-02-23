@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { AuthRepository } from './auth.repository';
 import { StorageRepository } from './storage.repository';
 
-import { Auth } from '../domain/auth';
-import { Token } from '../domain/token';
+import { Auth, AuthNode } from '../domain/auth';
+import { Token, TokenNode } from '../domain/token';
 
 @Injectable(
   { providedIn: 'root' }
@@ -20,6 +20,10 @@ export class AuthUseCase {
 
   login(auth: Auth): Observable<Token> {
     return this.authRepository.login(auth);
+  }
+
+  loginNode(auth: AuthNode): Observable<TokenNode> {
+    return this.authRepository.loginNode(auth);
   }
 
   logout(): Observable<any> {
@@ -41,7 +45,7 @@ export class AuthUseCase {
   }
 
   getStatusUser(): boolean {
-    return !! this.storageRepository.getStorage('accessToken');
+    return !! this.storageRepository.getStorage('x-token');
   }
 
   getFieldInToken(fieldName: string): any {
@@ -53,6 +57,7 @@ export class AuthUseCase {
   }
 
   getRolesUser(): string[] {
+    console.log(this.authRepository.getRolesUser());
     return this.authRepository.getRolesUser();
   }
 }

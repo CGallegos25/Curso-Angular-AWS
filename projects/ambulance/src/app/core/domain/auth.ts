@@ -3,3 +3,9 @@ export interface Auth {
   password: string;
   recaptchaReactive: string;
 }
+
+export interface AuthNode {
+  correo: string;
+  password: string;
+}
+

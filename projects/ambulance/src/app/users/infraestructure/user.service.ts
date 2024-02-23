@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ResultPage } from '../application/result-page';
+import { ResultPage, ResultPageNode } from '../application/result-page';
 import { environment } from 'projects/ambulance/src/environments/environment';
 import { User } from '../domain/user';
 import { UserModel } from '../models/user';
@@ -15,15 +15,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getPage(page: number): Observable<ResultPage> {
-    return this.http.get<ResultPage>
-    (`${environment.pathAPI}/users/page/${page}/${environment.pageSize}`)
+  getPage(page: number): Observable<ResultPageNode> {
+
+    let params = new HttpParams();
+    params = params.append('limite', environment.pageSize);
+    params = params.append('desde', page);
+    return this.http.get<ResultPageNode>
+    (`${environment.pathAPINode}/api/usuarios`, { params })
     .pipe(
       map((el: any) => {
-        const { records, totalRecords} = el;
+        const { total, usuarios} = el;
         return {
-          records,
-          totalRecords
+          total,
+          usuarios
         }
       })
     );
